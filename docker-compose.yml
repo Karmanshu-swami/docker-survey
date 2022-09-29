@@ -1,0 +1,24 @@
+version: '3'
+services:
+  # Mongodb Container
+  mongo_db:
+    container_name: db_container
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo_db:/data/db
+
+  # Node container
+  api: 
+    build: .
+    ports:
+      -8080: 5000
+    environment:
+      - PORT: 5000
+      - MONGODB_URI: mongodb://db_container:27017
+      - DB_NAME: studentrec
+    depends_on:
+      - mongo_db
+
+volumes: 
+  mongo_db: {}
