@@ -6,9 +6,8 @@ module.exports = () => {
       dbName: process.env.DB_NAME,
       user: process.env.DB_USER,
       pass: process.env.DB_PASS,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false
+      useNewUrlParser: false,
+      useUnifiedTopology: true
     })
     .then(() => {
       console.log('Mongodb connected....');
