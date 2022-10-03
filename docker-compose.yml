@@ -1,27 +1,28 @@
-version: '3'
+version: "3.8"
 services:
-  # Mongodb Container
+  #Mongodb container
   mongo_db:
     container_name: db_container
     image: mongo:latest
     restart: always
-    ports:
-      - 27017: 27017
-    volumes:
-      - mongo_db:/data/db
+    ports: 
+      - "27017:27017"
+    volumes: 
+      - "mongo_db:/data/db"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: Admin123
+      MONGO_INITDB_USERNAME: admin
+      MONGO_INITDB_PASSWORD: Admin123
 
-  # Node container
-  api: 
+  #Node container
+  backend_node:
+    container_name: backend
     build: .
     ports:
       - "8080:5000"
     volumes:
-      -.: /usr/src/app
+      - "backend_node:/app"
     depends_on:
       - mongo_db
-
-volumes: 
+volumes:
   mongo_db: {}
+  backend_node: {}
