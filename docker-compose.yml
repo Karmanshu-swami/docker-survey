@@ -23,6 +23,7 @@ services:
       - "backend_node:/app"
     depends_on:
       - mongo_db
+
 volumes:
   mongo_db: {}
   backend_node: {}
