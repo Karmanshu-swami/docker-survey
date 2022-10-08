@@ -1,6 +1,19 @@
 FROM node:latest
-WORKDIR /usr/src/app
-COPY package*.json .
-RUN npm ci
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm init -y
+
+RUN  npm install express \
+npm ejs \
+npm install mongo \
+npm install mongoose \
+npm install dotenv
+
 COPY . .
-CMD ["npm" , "start"]
+
+CMD ["npm" , "run" , "start"]
+
+EXPOSE 5000
